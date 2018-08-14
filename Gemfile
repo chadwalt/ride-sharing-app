@@ -70,6 +70,7 @@ group :test do
   # Adds test coverage reports
   gem 'simplecov', require: false
   gem "codeclimate-test-reporter", require: false
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
