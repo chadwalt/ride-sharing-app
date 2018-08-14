@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'devise'
 require 'factory_bot'
+require 'database_cleaner'
 require_relative 'support/controller_macros'
 require 'simplecov'
 SimpleCov.start 'rails'
@@ -63,6 +64,11 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
 
   config.include Devise::Test::ControllerHelpers, type: :controller
