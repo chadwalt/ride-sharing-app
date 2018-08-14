@@ -5,6 +5,9 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'devise'
+require 'factory_bot'
+require_relative 'support/controller_macros'
 require 'simplecov'
 SimpleCov.start 'rails'
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -39,7 +42,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -60,4 +63,27 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
+  config.extend ControllerMacros, :type => :controller
+
+  config.include FactoryBot::Syntax::Methods
+
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+    :provider => 'google_oauth2',
+    :uid => '123545',
+    :info => {
+      name: 'test',
+      email: 'test@gmail.com',
+      image_url: 'http:www//google.com/picture'
+    }
+  })
+  OmniAuth.config.on_failure = Proc.new { |env|
+    OmniAuth::FailureEndpoint.new(env).redirect_to_failure
+  }
+
+  config.render_views
 end

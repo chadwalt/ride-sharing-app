@@ -34,3 +34,6 @@
 
 # Ignore coverage
 coverage
+
+# Ignore .idea
+.idea

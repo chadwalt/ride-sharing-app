@@ -1,0 +1,60 @@
+// Place all the styles related to the Sigin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  padding: 0;
+  margin: 0;
+  background-image: url("https://newevolutiondesigns.com/images/freebies/city-wallpaper-18.jpg")
+}
+
+.sign_container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: none;
+}
+
+.signin-button {
+  box-sizing: border-box;
+  margin: 0.2em;
+  padding: 0 15px 0 46px;
+  border: none;
+  text-align: left;
+  line-height: 34px;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  font-size: 16px;
+  color: #FFF;
+
+  a {
+    text-decoration: none;
+    color: #FFF;
+  }
+}
+
+.signin-button:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 34px;
+  height: 100%;
+}
+
+.sign-button:focus {
+  outline: none;
+}
+
+.loginBtn:active {
+  box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+}
+
+.signin-google {
+  background: #DD4B39;
+}
+
+.signin-google:before {
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+}
