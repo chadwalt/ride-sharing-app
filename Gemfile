@@ -42,10 +42,15 @@ group :development, :test do
   # Add rspec for testing
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
+  gem 'pry'
+  gem 'factory_bot_rails'
 end
 
 # Use postgres as the database for Active Record
 gem 'pg'
+# Use ominiauth for authentication
+gem 'omniauth-google-oauth2'
+gem 'devise'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
