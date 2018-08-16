@@ -8,7 +8,7 @@ jobs:
           PGHOST: 127.0.0.1
           PGUSER: ${DATABASE_USER}
           RAILS_ENV: test
-      - image: circleci/postgres:9.4
+      - image: circleci/postgres:9.6-alpine
         environment:
           POSTGRES_USER: ${DATABASE_USER}
           POSTGRES_DB: ${DATABASE_NAME}
