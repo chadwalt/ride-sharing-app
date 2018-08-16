@@ -1,5 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "sigin/index.html.erb", type: :view do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe "signin/index", type: :view do
+  it 'renders signin page' do
+    render
+
+    expect(rendered).to match(/Signin With Google/)
+  end
 end

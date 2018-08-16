@@ -3,8 +3,8 @@ module ControllerMacros
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       @request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
-      user = create(:user)
-      sign_in user
+      @user = create(:user)
+      sign_in @user
     end
   end
 
