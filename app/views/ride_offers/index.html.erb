@@ -1,0 +1,47 @@
+<%= render 'shared/navbar' %>
+<%= render 'shared/sidebar' %>
+
+<div class="main-content">
+  <div class="table_contents">
+    <% if notice %>
+      <div id="notice" class="alert alert-primary" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+    <button class="btn btn-primary ride-offer-button">
+      <%= link_to 'New Ride Offer', new_ride_offer_path %>
+    </button>
+    <table class="table table-striped" id="table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Origin</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Take Off</th>
+          <th scope="col">No of People</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ride_offers.each do |ride_offer| %>
+          <tr>
+            <td><%= ride_offer.origin %></td>
+            <td><%= ride_offer.destination %></td>
+            <td><%= ride_offer.take_off.to_s(:time) %></td>
+            <td><%= ride_offer.no_of_people %></td>
+            <td>
+              <%= link_to (edit_ride_offer_path(ride_offer)), title: 'Edit Ride Offer' do %>
+                <%= fa_icon "edit"%>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to (ride_offer), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Edit Ride Offer' do %>
+                <%= fa_icon "trash"%>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

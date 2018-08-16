@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Origin:</strong>
+  <%= @ride_offer.origin %>
+</p>
+
+<p>
+  <strong>Destination:</strong>
+  <%= @ride_offer.destination %>
+</p>
+
+<p>
+  <strong>Take off:</strong>
+  <%= @ride_offer.take_off %>
+</p>
+
+<p>
+  <strong>No of people:</strong>
+  <%= @ride_offer.no_of_people %>
+</p>
+
+<%= link_to 'Edit', edit_ride_offer_path(@ride_offer) %> |
+<%= link_to 'Back', ride_offers_path %>
