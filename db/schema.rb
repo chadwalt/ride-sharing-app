@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_13_175002) do
+ActiveRecord::Schema.define(version: 2018_08_15_134524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ride_offers", force: :cascade do |t|
+    t.string "origin"
+    t.string "destination"
+    t.time "take_off"
+    t.integer "no_of_people"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_ride_offers_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "uid"
@@ -25,4 +36,5 @@ ActiveRecord::Schema.define(version: 2018_08_13_175002) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "ride_offers", "users"
 end
