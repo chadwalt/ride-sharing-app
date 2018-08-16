@@ -1,0 +1,203 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+*/
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+/* Import Bootstrap */
+@import "bootstrap";
+@import "font-awesome";
+
+/* Import controller scss files*/
+@import "sigin";
+@import "ride_offers";
+
+.main {
+  width: 90%;
+  min-width: 100%;
+}
+
+.main-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 10px;
+  min-height: 100%;
+  width: 230px;
+  z-index: 810;
+  transition: transform .3s ease-in-out, width .3s ease-in-out;
+  background: #222d32;
+}
+
+.content {
+  width: 88%;
+}
+
+.app-title {
+  color: #fff;
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-header {
+  color: #4b646f;
+  background: #1a2226;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 10px 25px 10px 15px;
+}
+
+.menu-tree {
+  color: #b8c7ce;
+  padding: 10px 25px 10px 15px;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.menu-tree:hover {
+  background: #1e282c;
+}
+
+.menu-tree a {
+  text-decoration: none;
+  color: #b8c7ce;
+}
+
+.menu-tree a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.sidebar-menu .menu-tree .fas {
+  width: 20px;
+}
+
+.main-navbar {
+  position: fixed;
+  top: 0;
+  left: 230px;
+  width: calc(100% - 230px);
+  z-index: 1;
+}
+
+#nav-profile-image {
+  width: 25px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.main-content {
+  position: relative;
+  left: 230px;
+  top: 90px;
+  width: 78%;
+}
+
+.profile-main-content {
+  display: flex;
+}
+
+.profile-user-img {
+  margin: 0 auto;
+  width: 300px;
+  padding: 5px;
+  border: 3px solid #d2d6de;
+  border-radius: 50%;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.profile-content {
+  flex-grow: 2;
+  width: 100%;
+}
+
+.submit-btn {
+  font-size: 16px;
+  color: #fff;
+  background: #333333;
+  border-radius: 27px;
+  min-width: 150px;
+  height: 55px;
+}
+
+.tab-content .tab-pane {
+  margin-top: 20px;
+}
+
+.dropdown-username {
+  border: 0;
+  background: inherit;
+}
+
+.category_table {
+  width: 105%;
+  padding: 40px;
+}
+
+.table_contents {
+  width: 105%;
+  padding: 12px;
+}
+
+#add_category {
+  float: right;
+}
+
+.category_table_contents a {
+  text-decoration: none;
+}
+
+.table_buttons_input {
+  float: right;
+}
+
+#table-striped {
+  min-height: 100%;
+}
+
+.table_users_buttons {
+  display: inline-flex;
+  padding-left: 40px;
+}
+
+.table_users_buttons #user_search {
+  float: right;
+  position: absolute;
+  left: calc(100% - 230px);
+  width: 200px;
+}
+
+.table a:hover{
+  cursor: pointer;
+}
+
+#navbarSupportedContent {
+  position: absolute;
+  right: calc(100% - 95%);
+}

@@ -1,0 +1,16 @@
+// Place all the styles related to the RideOffers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ride-offer-button {
+  margin-bottom: 3px;
+  a {
+    color: #FFF;
+    text-decoration: none;
+  }
+}
+
+.new-ride-offer {
+  width: 105%;
+  padding: 12px;
+}
