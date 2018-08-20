@@ -1,0 +1,57 @@
+<%= render 'shared/navbar' %>
+<%= render 'shared/sidebar' %>
+
+<div class="main-content">
+  <div class="table_contents">
+    <% if notice %>
+      <div id="notice" class="alert alert-primary" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+    <table class="table table-striped" id="table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Origin</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Take Off</th>
+          <th scope="col">No of People</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ride_offers.each do |ride_offer| %>
+          <tr>
+            <td>
+              <a href="javascript:undefined" data-rideoffer="<%= ride_offer.to_json %>" class="show_interest_ride_offer" data-toggle="modal" data-target="#show-interest-modal">
+                <%= ride_offer.origin %>
+              </a>
+            </td>
+            <td><%= ride_offer.destination %></td>
+            <td><%= ride_offer.take_off.to_s(:time) %></td>
+            <td><%= ride_offer.no_of_people %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <!--Show Interest in ride offer Modal -->
+  <div class="modal fade" id="show-interest-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Show Interest in Ride Offer</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to take this ride offer?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="show-interest">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

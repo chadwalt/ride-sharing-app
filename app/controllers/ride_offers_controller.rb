@@ -5,8 +5,8 @@ class RideOffersController < ApplicationController
   # GET /ride_offers
   # GET /ride_offers.json
   def index
-    @title = 'Ride Offers'
-    @ride_offers = RideOffer.all
+    @title = 'My Ride Offers'
+    @ride_offers = current_user.ride_offers.all
   end
 
   # GET /ride_offers/1
