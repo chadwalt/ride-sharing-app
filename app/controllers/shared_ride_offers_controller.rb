@@ -18,8 +18,14 @@ class SharedRideOffersController < ApplicationController
 
     respond_to do |format|
       if @ride_offer
-        @ride_offer.ride_offer_interests.create!(user_id: current_user.id)
-        format.json { render json: {message: 'Ride offer interest saved'}, status: :created }
+        signed_up_counts = RideOfferInterest.signed_up_counts(@ride_offer.id)
+
+        if signed_up_counts == @ride_offer.no_of_people
+          format.json { render json: {message: 'Maximum number of people reached'}, status: :not_acceptable }
+        else
+          @ride_offer.ride_offer_interests.create!(user_id: current_user.id)
+          format.json { render json: {message: 'Ride offer interest saved'}, status: :created }
+        end
       else
         format.json { render json: {message: 'Ride offer not found'}, status: :not_found }
       end
