@@ -11,6 +11,7 @@
     <table class="table table-striped" id="table-striped">
       <thead>
         <tr>
+          <th scope="col">Signed Up</th>
           <th scope="col">Origin</th>
           <th scope="col">Destination</th>
           <th scope="col">Take Off</th>
@@ -20,6 +21,7 @@
       <tbody>
         <% @ride_offers.each do |ride_offer| %>
           <tr>
+          <td><%= "#{ride_offer.interested_counts} / #{ride_offer.no_of_people}" %></td>
             <td>
               <a href="javascript:undefined" data-rideoffer="<%= ride_offer.to_json %>" class="show_interest_ride_offer" data-toggle="modal" data-target="#show-interest-modal">
                 <%= ride_offer.origin %>

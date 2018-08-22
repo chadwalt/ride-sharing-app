@@ -6,6 +6,10 @@ class SharedRideOffersController < ApplicationController
   def index
     @title = 'Shared Ride Offers'
     @ride_offers = RideOffer.shared_ride_offers(current_user)
+
+    @ride_offers.each do |ride_offer|
+      ride_offer.interested_counts = RideOfferInterest.signed_up_counts(ride_offer.id)
+    end
   end
 
   # Get show_interest
