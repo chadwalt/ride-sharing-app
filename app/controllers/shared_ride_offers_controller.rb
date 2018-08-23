@@ -16,19 +16,35 @@ class SharedRideOffersController < ApplicationController
   def show_interest
     @ride_offer = RideOffer.find_by(id: params[:id])
 
-    respond_to do |format|
-      if @ride_offer
-        signed_up_counts = RideOfferInterest.signed_up_counts(@ride_offer.id)
-
-        if signed_up_counts == @ride_offer.no_of_people
-          format.json { render json: {message: 'Maximum number of people reached'}, status: :not_acceptable }
-        else
-          @ride_offer.ride_offer_interests.create!(user_id: current_user.id)
-          format.json { render json: {message: 'Ride offer interest saved'}, status: :created }
-        end
-      else
-        format.json { render json: {message: 'Ride offer not found'}, status: :not_found }
+    if @ride_offer
+      if maximum_no_of_people_reached? @ride_offer
+        respond_with_json('Maximum number of people reached', :not_acceptable)
+        return
       end
+
+      @ride_offer.ride_offer_interests.create!(user_id: current_user.id)
+      respond_with_json('Ride offer interest saved', :created)
+    else
+      respond_with_json('Ride offer not found', :not_found)
     end
+  end
+
+  private
+
+  # Private: Find out if the maximum of people for the ride offer has reached.
+  #
+  # ride_offer - The Hash of the ride offer
+  #              :id - The id of the ride offer
+  #              :origin - Where the ride will be setting off from.
+  #              :destination - The final destination of the ride.
+  #              :take_off - This is the take off time of the ride.
+  #              :no_of_people - The number of people the ride can carry.
+  #              :user_id - The id of the person who made the ride offer.
+  #
+  # Returns true if maximum number of people for the ride offer has reached
+  #   or nil if the maximum number of people has not been gotten yet.
+  def maximum_no_of_people_reached?(ride_offer)
+    signed_up_counts = RideOfferInterest.signed_up_counts(@ride_offer.id)
+    true if signed_up_counts == ride_offer.no_of_people
   end
 end
