@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :ride_offer_interest do
     id 1
-    ride_offer 1
+    ride_offer_id 1
     user_id 2
   end
 

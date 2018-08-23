@@ -7,20 +7,24 @@ $ ->
     ride_offer_id = $(this).data('ride_offer_id')
 
     $.post("/shared_ride_offers/#{ride_offer_id}", (response, status ,request_object) ->
-     if request_object.status == 201
-      message = 'Interest saved successfully.'
-      $('.modal-body').html(message)
-      location.reload()
-    )
-    .error (response, status, request_object) ->
-      message = 'Something went wrong.'
       $('.modal-body').html(response.message)
+      location.reload()
+    , 'JSON')
+    .fail (response) ->
+      $('.modal-body').html(response.responseJSON.message)
 
   $('.show_interest_ride_offer').click (event) ->
     ride_offer = $(this).data('rideoffer')
     message = "Are you sure you want to take this ride offer from "
     message += "<b>#{ride_offer.origin}</b> to <b>#{ride_offer.destination}</b> "
     message += "at <b>#{ride_offer.take_off.slice(11, 19)}</b>?"
+    interested_counts = $(this).data('interestedcounts')
+
+    if ride_offer.no_of_people == interested_counts
+      message = 'Maximum number of people reached.'
+      $('#rideOfferSignupAlert').modal('show')
+    else
+      $('#show-interest-modal').modal('show')
+      $('#show-interest').data('ride_offer_id', ride_offer.id)
 
     $('.modal-body').html(message)
-    $('#show-interest').data('ride_offer_id', ride_offer.id)

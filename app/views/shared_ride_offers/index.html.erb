@@ -11,6 +11,7 @@
     <table class="table table-striped" id="table-striped">
       <thead>
         <tr>
+          <th scope="col">Signed Up</th>
           <th scope="col">Origin</th>
           <th scope="col">Destination</th>
           <th scope="col">Take Off</th>
@@ -20,8 +21,9 @@
       <tbody>
         <% @ride_offers.each do |ride_offer| %>
           <tr>
+          <td><%= "#{ride_offer.interested_counts} / #{ride_offer.no_of_people}" %></td>
             <td>
-              <a href="javascript:undefined" data-rideoffer="<%= ride_offer.to_json %>" class="show_interest_ride_offer" data-toggle="modal" data-target="#show-interest-modal">
+              <a href="javascript:undefined" data-interestedcounts="<%= ride_offer.interested_counts %>" data-rideoffer="<%= ride_offer.to_json %>" class="show_interest_ride_offer">
                 <%= ride_offer.origin %>
               </a>
             </td>
@@ -50,6 +52,26 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" id="show-interest">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ride offer signup alert modal -->
+  <div class="modal fade" id="rideOfferSignupAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Ride Offer</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
