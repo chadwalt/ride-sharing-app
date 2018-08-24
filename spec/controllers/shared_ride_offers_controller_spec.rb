@@ -41,4 +41,15 @@ RSpec.describe SharedRideOffersController, type: :controller do
       expect(response).to have_http_status(:not_acceptable)
     end
   end
+
+  describe 'GET #people_interested' do
+    it 'should return all people who are interested in a ride offer' do
+      create(:ride_offer)
+      create(:ride_offer_interest)
+      get :people_interested, params: {id: 1}, as: :json
+      expect(response).to have_http_status :ok
+      expect(response.content_type).to eq 'application/json'
+      expect(response.body).to include 'photo.jpg'
+    end
+  end
 end
