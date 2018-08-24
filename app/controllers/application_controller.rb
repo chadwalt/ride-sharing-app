@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   # Returns a json response
   def respond_with_json(message, status_code)
     respond_to do |format|
-      format.json { render json: { message: message }, status: status_code }
+      format.json { render json: message, status: status_code }
     end
   end
 end
