@@ -18,15 +18,20 @@ class SharedRideOffersController < ApplicationController
 
     if @ride_offer
       if maximum_no_of_people_reached? @ride_offer
-        respond_with_json('Maximum number of people reached', :not_acceptable)
+        respond_with_json({ message: 'Maximum number of people reached' }, :not_acceptable)
         return
       end
 
       @ride_offer.ride_offer_interests.create!(user_id: current_user.id)
-      respond_with_json('Ride offer interest saved', :created)
+      respond_with_json({ message: 'Ride offer interest saved' }, :created)
     else
-      respond_with_json('Ride offer not found', :not_found)
+      respond_with_json({ message: 'Ride offer not found' }, :not_found)
     end
+  end
+
+  def people_interested
+    @ride_offer_interests = RideOfferInterest.people_interested(params[:id])
+    respond_with_json(@ride_offer_interests, :ok)
   end
 
   private

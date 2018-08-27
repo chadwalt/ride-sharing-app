@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'ride_offers/index', to: 'ride_offers#index'
+  get '/shared_ride_offers/:id/people_interested', to: 'shared_ride_offers#people_interested', :as => :people_interested
   post 'shared_ride_offers/:id', to: 'shared_ride_offers#show_interest', :as => :show_interest
   resources :ride_offers
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }

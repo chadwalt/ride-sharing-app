@@ -25,5 +25,15 @@ RSpec.describe RideOfferInterest, type: :model do
       create(:ride_offer_interest)
       expect(RideOfferInterest.signed_up_counts(1)).to eq 1
     end
+
+    it 'should return people who have shown interest in the ride offer' do
+      create(:user)
+      create(:ride_offer)
+      create(:ride_offer_interest)
+
+      interest = RideOfferInterest.people_interested(1).first
+      expect(interest.name).to eq 'test'
+      expect(interest.image_url).to eq 'photo.jpg'
+    end
   end
 end
