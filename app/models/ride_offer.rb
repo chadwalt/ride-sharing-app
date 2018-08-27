@@ -8,9 +8,17 @@ class RideOffer < ApplicationRecord
   validates :take_off, presence: true
   validates :no_of_people, presence: true, numericality: { only_integer: true, greater_than: 0}
 
-  ## Ride shared rides
-  ## Not including the ones created by the current user.
+  # Public: All Ride offers not including those created by the current user.
+  #
+  # current_user - A hash that contains details of the user.
+  #
+  # Return all ride offers not including those created by the current user.
   def self.shared_ride_offers(current_user)
-    where.not(user_id: current_user.id)
+    current_datetime = Time.now
+    where(
+      'take_off >= ? AND created_at >= ?',
+      current_datetime.strftime('%T'),
+      current_datetime.strftime('%F')
+    ).where.not(user_id: current_user.id)
   end
 end
