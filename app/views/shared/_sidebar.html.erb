@@ -5,12 +5,12 @@
       <ul class="sidebar-menu">
         <li class="sidebar-header">Main Navigation</li>
         <li class="menu-tree">
-          <%= link_to (root_path) do %>
+          <%= link_to (root_path), method: :get do %>
             <%= fa_icon "bars", text: "Shared Ride Offers"%>
           <% end %>
         </li>
         <li class="menu-tree">
-          <%= link_to (ride_offers_path) do %>
+          <%= link_to (ride_offers_path), method: :get do %>
             <%= fa_icon "car", text: "My Ride Offers"%>
           <% end %>
         </li>
