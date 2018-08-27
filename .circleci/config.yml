@@ -8,6 +8,7 @@ jobs:
           PGHOST: 127.0.0.1
           PGUSER: postgres
           RAILS_ENV: test
+          CC_TEST_REPORTER_ID: $CC_TEST_REPORTER_ID
       - image: circleci/postgres:9.6
         environment:
           POSTGRES_USER: postgres
@@ -30,7 +31,7 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-   
+
       # Run migrations
       - run:
           name: run migrations
