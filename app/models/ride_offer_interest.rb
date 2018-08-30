@@ -18,4 +18,14 @@ class RideOfferInterest < ApplicationRecord
   def self.people_interested(ride_offer_id)
     joins(:user).where(ride_offer_id: ride_offer_id).select('name, image_url')
   end
+
+  # Public: Check if user has already shown interest in a ride offer.
+  #
+  # ride_offer_id - An Integer, which is the ID of the ride offer
+  # user_id       - An Integer, which is the ID of the current user.
+  #
+  # Return true/false whether the user has shown interest.
+  def self.shown_interest?(ride_offer_id, user_id)
+    where(ride_offer_id: ride_offer_id, user_id: user_id).exists?
+  end
 end
