@@ -36,7 +36,13 @@ RSpec.describe SharedRideOffersController, type: :controller do
     it 'does not save when maximum number of people has reached' do
       create(:ride_offer)
       create(:ride_offer_interest)
+      post :show_interest, params: { id: 1 }, as: :json
+      expect(response).to have_http_status(:not_acceptable)
+    end
 
+    it 'should report that a user has already shown interest in a ride offer' do
+      create(:ride_offer)
+      create(:ride_offer_interest)
       post :show_interest, params: { id: 1 }, as: :json
       expect(response).to have_http_status(:not_acceptable)
     end
@@ -48,8 +54,22 @@ RSpec.describe SharedRideOffersController, type: :controller do
       create(:ride_offer_interest)
       get :people_interested, params: {id: 1}, as: :json
       expect(response).to have_http_status :ok
-      expect(response.content_type).to eq 'application/json'
-      expect(response.body).to include 'photo.jpg'
+    end
+  end
+
+  describe 'DELETE #destory' do
+    it 'should remove a user from a ride offer interests' do
+      create(:ride_offer)
+      create(:ride_offer_interest)
+      delete :destroy, params: {id: 1}, as: :json
+      expect(response).to have_http_status :accepted
+    end
+
+    it 'should not remove user if the ride offer id does not exist' do
+      create(:ride_offer)
+      create(:ride_offer_interest)
+      delete :destroy, params: {id: 10}, as: :json
+      expect(response).to have_http_status :service_unavailable
     end
   end
 end
