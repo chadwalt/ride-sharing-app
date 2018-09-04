@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $('.interested_people').click ->
+  $(document).on('click', '.interested_people', ->
     ride_offer_id = $(this).attr('id')
     title = 'People Interested'
     body = ""
@@ -19,4 +19,4 @@ $ ->
       $('#alertModalBody').html(body)
       $('#alertModal').modal('show')
     )
-
+  )
