@@ -10,7 +10,6 @@ $ ->
 
     $.getJSON("/shared_ride_offers/#{ride_offer_id}/people_interested", (response)  ->
       $.each(response, (index, value) ->
-        console.log(response)
         body += "<img class='user-photo' src='#{value.image_url}'/>"
         body += "#{value.name} <hr>"
       )
