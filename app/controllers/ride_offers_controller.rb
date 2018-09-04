@@ -6,7 +6,7 @@ class RideOffersController < ApplicationController
   # GET /ride_offers.json
   def index
     @title = 'My Ride Offers'
-    @ride_offers = current_user.ride_offers.all
+    @ride_offers = current_user.ride_offers.order(take_off: :desc)
   end
 
   # GET /ride_offers/1
