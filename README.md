@@ -29,4 +29,4 @@ To run the application you can use the built in server of rails which webrick an
 rails s
 ```
 
-The application folder contains a `.env_sample` file that contains all env variables that need to be defined for the application to run.
+The application folder contains a `.env.sample` file that contains all env variables that need to be defined for the application to run.
