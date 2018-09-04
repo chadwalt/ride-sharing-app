@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $('#show-interest').click ->
+  $(document).on('click', '#show-interest', ->
     ride_offer_id = $(this).data('ride_offer_id')
 
     $.post("/shared_ride_offers/#{ride_offer_id}", (response, status ,request_object) ->
@@ -13,8 +13,9 @@ $ ->
     .fail (response) ->
       display_withdraw_interest()
       $('.modal-body').html(response.responseJSON.message)
+  );
 
-  $('.show_interest_ride_offer').click (event) ->
+  $(document).on('click', '.show_interest_ride_offer', (event) ->
     ride_offer = $(this).data('rideoffer')
     message = "Are you sure you want to take this ride offer from "
     message += "<b>#{ride_offer.origin}</b> to <b>#{ride_offer.destination}</b> "
@@ -30,8 +31,9 @@ $ ->
       $('#show-interest').data('ride_offer_id', ride_offer.id)
 
     $('.modal-body').html(message)
+  )
 
-  $('#withdraw-interest').click ->
+  $(document).on('click', '#withdraw-interest',  ->
     ride_offer_id = $('#show-interest').data('ride_offer_id')
 
     $.ajax({
@@ -41,8 +43,10 @@ $ ->
     }).done((response) ->
       location.reload()
     ).fail((response) ->
+      $('.modal-body').html(response.responseJSON.message)
       display_show_interest_button()
     )
+  )
 
 display_show_interest_button = () ->
   $('#show-interest').show();
